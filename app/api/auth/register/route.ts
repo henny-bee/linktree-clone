@@ -1,6 +1,8 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { authService } from "@/lib/auth-service"
 
+import { getDatabase } from "@/lib/mongodb"
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
@@ -22,8 +24,23 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Password must be at least 6 characters long" }, { status: 400 })
     }
 
+    // License check: Only allow registration if an unclaimed license exists
+    const { db } = await getDatabase()
+    const licensesCollection = db.collection("licenses")
+    const availableLicense = await licensesCollection.findOne({ claim_by: null })
+
+    if (!availableLicense) {
+      return NextResponse.json({ error: "Registration is closed: No available license keys." }, { status: 403 })
+    }
+
     // Register user
     const result = await authService.register(displayName.trim(), email.trim(), password)
+
+    // After successful registration, claim the license for this user
+    await licensesCollection.updateOne(
+      { _id: availableLicense._id },
+      { $set: { claim_by: email.trim() } }
+    )
 
     return NextResponse.json(result)
   } catch (error) {

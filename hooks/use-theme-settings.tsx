@@ -220,6 +220,41 @@ export function ThemeSettingsProvider({ children }: { children: React.ReactNode 
     setIsInitialized(true)
   }, [])
 
+  // Listen for localStorage and custom themeSettingsUpdated events to re-sync themeSettings
+  useEffect(() => {
+    function handleThemeSettingsChange() {
+      if (typeof window !== "undefined") {
+        const savedSettings = localStorage.getItem("themeSettings")
+        if (savedSettings) {
+          try {
+            const parsed = JSON.parse(savedSettings)
+            setThemeSettings((prev) => ({
+              ...prev,
+              ...parsed,
+              fontColors: {
+                ...prev.fontColors,
+                ...(parsed.fontColors || {})
+              },
+              effects: {
+                ...prev.effects,
+                ...(parsed.effects || {})
+              }
+            }))
+          } catch (error) {
+            console.error("Failed to parse theme settings on event:", error)
+          }
+        }
+      }
+    }
+
+    window.addEventListener("storage", handleThemeSettingsChange)
+    window.addEventListener("themeSettingsUpdated", handleThemeSettingsChange)
+    return () => {
+      window.removeEventListener("storage", handleThemeSettingsChange)
+      window.removeEventListener("themeSettingsUpdated", handleThemeSettingsChange)
+    }
+  }, [])
+
   // Apply theme settings immediately when they change - ONLY to preview areas
   useEffect(() => {
     if (isInitialized) {

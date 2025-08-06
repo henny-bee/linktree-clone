@@ -5,7 +5,7 @@ import Link from "next/link"
 import { LogIn, Sparkles, Users, Zap } from "lucide-react"
 
 export const metadata: Metadata = {
-  title: "v0.me - Your Personal Link Page",
+  title: "profilsaya.com - Your Personal Link Page",
   description: "A customizable link sharing platform for all your important links",
 }
 
@@ -22,7 +22,7 @@ export default function Home() {
             </div>
 
             <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 dark:from-white dark:via-blue-200 dark:to-purple-200 bg-clip-text text-transparent">
-              v0.me
+              profilsaya.com
             </h1>
 
             <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">

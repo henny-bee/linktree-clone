@@ -39,6 +39,7 @@ export default function LinkTree({ username, themeData }: LinkTreeProps) {
   const [isLoading, setIsLoading] = useState(false)
   const [dataLoaded, setDataLoaded] = useState(false)
   const [user, setUser] = useState<any>(null)
+  const [profileNotFound, setProfileNotFound] = useState(false)
 
   // Helper function to get gradient styles
   const getGradientStyle = (gradientType: string): string => {
@@ -103,6 +104,10 @@ export default function LinkTree({ username, themeData }: LinkTreeProps) {
             // Update theme settings
             if (dbTheme) {
               localStorage.setItem("themeSettings", JSON.stringify(dbTheme))
+              // Notify themeSettings hook to re-sync
+              if (typeof window !== "undefined") {
+                window.dispatchEvent(new Event("themeSettingsUpdated"))
+              }
               // Apply theme settings immediately
               const root = document.documentElement
 
@@ -134,6 +139,7 @@ export default function LinkTree({ username, themeData }: LinkTreeProps) {
         } else {
           console.log("Profile not found for username:", username)
           if (isMounted) {
+            setProfileNotFound(true)
             toast({
               title: "❌ Profile not found",
               description: "This profile doesn't exist or hasn't been created yet",
@@ -243,15 +249,8 @@ export default function LinkTree({ username, themeData }: LinkTreeProps) {
       <div className="max-w-3xl mx-auto w-full relative z-10">
         {/* Header with Edit Button */}
         <div className="flex justify-between items-center mb-6 px-4">
-          <h1 className="text-2xl font-bold">v0.me</h1>
-          {user && user.slug === username ? (
-            <Link href="/edit">
-              <Button variant="outline" size="sm" className="gap-2 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm">
-                <Edit className="h-4 w-4" />
-                Edit
-              </Button>
-            </Link>
-          ) : (
+          <h1 className="text-2xl font-bold">profilsaya.com</h1>
+          {profileNotFound && (
             <Link href="/login">
               <Button variant="outline" size="sm" className="gap-2 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm">
                 Create Your Page

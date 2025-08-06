@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -42,6 +42,14 @@ export default function LoginForm() {
     password: "",
     confirmPassword: "",
   })
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    const storedToken = localStorage.getItem("token");
+    if (storedUser && storedToken) {
+      router.replace("/edit");
+    }
+  }, []);
 
   const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -149,7 +157,7 @@ export default function LoginForm() {
 
       toast({
         title: "🎉 Registration successful!",
-        description: `Welcome to v0.me, ${result.user.displayName}!`,
+        description: `Welcome to profilsaya.comlsaya.com, ${result.user.displayName}!`,
         duration: 3000,
       })
 
@@ -184,7 +192,7 @@ export default function LoginForm() {
           <div className="space-y-2">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/20 dark:to-purple-900/20 text-blue-700 dark:text-blue-300 text-sm font-medium">
               <Sparkles className="h-3 w-3" />
-              Join v0.me
+              Join profilsaya.comlsaya.com
             </div>
             <h1 className="text-3xl font-bold bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 dark:from-white dark:via-blue-200 dark:to-purple-200 bg-clip-text text-transparent">
               Welcome
@@ -277,7 +285,7 @@ export default function LoginForm() {
                       disabled={isLoading}
                     />
                     <p className="text-xs text-muted-foreground">
-                      This will be used for your public URL: v0.me/your-name
+                      This will be used for your public URL: profilsaya.comlsaya.com/your-name
                     </p>
                   </div>
                   <div className="space-y-2">

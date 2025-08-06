@@ -326,21 +326,21 @@ export function ThemeForm({ profile, links = [], onUpdateSecondaryBg, currentThe
           .then(() => {
             toast({
               title: "🎉 Profile saved to database & shared!",
-              description: `Your v0.me/${result.userId} link has been copied to clipboard`,
+              description: `Your profilsaya.com/${result.userId} link has been copied to clipboard`,
               duration: 5000,
             })
           })
           .catch(() => {
             toast({
               title: "✅ Profile saved to database!",
-              description: `Your profile is now live at v0.me/${result.userId}`,
+              description: `Your profile is now live at profilsaya.com/${result.userId}`,
               duration: 5000,
             })
           })
       } else {
         toast({
           title: "✅ Profile saved to database!",
-          description: `Your profile is now live at v0.me/${result.userId}`,
+          description: `Your profile is now live at profilsaya.com/${result.userId}`,
           duration: 5000,
         })
       }
@@ -400,7 +400,7 @@ export function ThemeForm({ profile, links = [], onUpdateSecondaryBg, currentThe
             </div>
             Theme Studio
           </h2>
-          <p className="text-sm sm:text-base text-muted-foreground">Craft your perfect v0.me experience</p>
+          <p className="text-sm sm:text-base text-muted-foreground">Craft your perfect profilsaya.com experience</p>
         </div>
         <div className="flex items-center gap-3 w-full sm:w-auto">
           <Button

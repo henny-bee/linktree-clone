@@ -349,21 +349,21 @@ export default function EditPage() {
           .then(() => {
             toast({
               title: "🎉 Profile saved & shared!",
-              description: `Your v0.me/${result.slug} link has been copied to clipboard`,
+              description: `Your profilsaya.com/${result.slug} link has been copied to clipboard`,
               duration: 5000,
             })
           })
           .catch(() => {
             toast({
               title: "✅ Profile saved!",
-              description: `Your profile is now live at v0.me/${result.slug}`,
+              description: `Your profile is now live at profilsaya.com/${result.slug}`,
               duration: 5000,
             })
           })
       } else {
         toast({
           title: "✅ Profile saved!",
-          description: `Your profile is now live at v0.me/${result.slug}`,
+          description: `Your profile is now live at profilsaya.com/${result.slug}`,
           duration: 5000,
         })
       }
@@ -668,6 +668,7 @@ export default function EditPage() {
                               className={cn(
                                 "text-xs font-medium",
                                 isActive ? "bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300" : "",
+                               
                               )}
                             >
                               {section.badge}

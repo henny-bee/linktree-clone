@@ -67,7 +67,7 @@ const sourceCodePro = Source_Code_Pro({
 })
 
 export const metadata: Metadata = {
-  title: "v0.me",
+  title: "profilsaya.com",
   description: "Your personal link sharing platform",
     generator: 'v0.dev'
 }
