@@ -87,19 +87,20 @@ const patternColorPresets = [
 // Enhanced background colors with RGB values
 const backgroundColors = [
   { name: "White", value: "bg-white", color: "#ffffff", rgb: "255, 255, 255" },
-  { name: "Light Gray", value: "bg-gray-50", color: "#f9fafb", rgb: "249, 250, 251" },
-  { name: "Slate", value: "bg-slate-100", color: "#f1f5f9", rgb: "241, 245, 249" },
-  { name: "Red", value: "bg-red-50", color: "#fef2f2", rgb: "254, 242, 242" },
-  { name: "Orange", value: "bg-orange-50", color: "#fff7ed", rgb: "255, 247, 237" },
-  { name: "Yellow", value: "bg-yellow-50", color: "#fefce8", rgb: "254, 252, 232" },
-  { name: "Green", value: "bg-green-50", color: "#f0fdf4", rgb: "240, 253, 244" },
-  { name: "Blue", value: "bg-blue-50", color: "#eff6ff", rgb: "239, 246, 255" },
-  { name: "Purple", value: "bg-purple-50", color: "#faf5ff", rgb: "250, 245, 255" },
-  { name: "Pink", value: "bg-pink-50", color: "#fdf2f8", rgb: "253, 242, 248" },
+  { name: "Light Gray", value: "bg-gray-50", color: "#e5e7eb", rgb: "249, 250, 251" },
+  { name: "Slate", value: "bg-slate-100", color: "#e5e7eb", rgb: "241, 245, 249" },
+  { name: "Red", value: "bg-red-50", color: "#fecaca", rgb: "254, 242, 242" },
+  { name: "Orange", value: "bg-orange-50", color: "#fdba74", rgb: "255, 247, 237" },
+  { name: "Yellow", value: "bg-yellow-50", color: "#fde047", rgb: "254, 252, 232" },
+  { name: "Green", value: "bg-green-50", color: "#86efac", rgb: "240, 253, 244" },
+  { name: "Blue", value: "bg-blue-50", color: "#93c5fd", rgb: "239, 246, 255" },
+  { name: "Purple", value: "bg-purple-50", color: "#c4b5fd", rgb: "250, 245, 255" },
+  { name: "Pink", value: "bg-pink-50", color: "#c4b5fd", rgb: "253, 242, 248" },
 ]
 
 // Enhanced background gradients
 const backgroundGradients = [
+  // { name: "White", value: "white", preview: "linear-gradient(135deg, #ffffff 0%, #ffffff 100%)" },
   { name: "None", value: "none", preview: "transparent" },
   { name: "Sunset", value: "sunset", preview: "linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)" },
   { name: "Ocean", value: "ocean", preview: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)" },
@@ -107,8 +108,8 @@ const backgroundGradients = [
   { name: "Midnight", value: "midnight", preview: "linear-gradient(135deg, #2c3e50 0%, #3498db 100%)" },
   { name: "Aurora", value: "aurora", preview: "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)" },
   { name: "Fire", value: "fire", preview: "linear-gradient(135deg, #ff9a56 0%, #ff6b6b 100%)" },
-  { name: "Purple Dream", value: "purple", preview: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)" },
-  { name: "Pink Bliss", value: "pink", preview: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)" },
+  { name: "Purple Dream", value: "purpledream", preview: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)" },
+  { name: "Pink Bliss", value: "pinkbliss", preview: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)" },
   { name: "Neon Cyber", value: "neon", preview: "linear-gradient(135deg, #00f5ff 0%, #ff00ff 50%, #ffff00 100%)" },
   { name: "Tropical", value: "tropical", preview: "linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #ffe66d 100%)" },
   { name: "Galaxy", value: "galaxy", preview: "linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)" },
@@ -392,7 +393,7 @@ export function ThemeForm({ profile, links = [], onUpdateSecondaryBg, currentThe
   return (
     <div className="space-y-6 sm:space-y-8">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      {/* <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="space-y-2">
           <h2 className="text-xl sm:text-2xl font-bold tracking-tight flex items-center gap-3">
             <div className="p-2 rounded-xl bg-gradient-to-br from-primary/20 to-primary/10">
@@ -412,9 +413,9 @@ export function ThemeForm({ profile, links = [], onUpdateSecondaryBg, currentThe
             Save & Share
           </Button>
         </div>
-      </div>
+      </div> */}
 
-      {/* Share URL Display */}
+      {/* Share URL Display
       {shareUrl && (
         <Card className="border-dashed border-2 border-primary/20 bg-primary/5">
           <CardContent className="p-4 sm:p-6">
@@ -439,9 +440,9 @@ export function ThemeForm({ profile, links = [], onUpdateSecondaryBg, currentThe
             </div>
           </CardContent>
         </Card>
-      )}
+      )} */}
 
-      {/* Dark Mode Toggle */}
+      {/* Dark Mode Toggle
       <Card className="overflow-hidden">
         <CardContent className="p-4 sm:p-6">
           <div className="flex items-center justify-between">
@@ -467,7 +468,7 @@ export function ThemeForm({ profile, links = [], onUpdateSecondaryBg, currentThe
             />
           </div>
         </CardContent>
-      </Card>
+      </Card> */}
 
       {/* Main Tabs - Mobile Responsive */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
@@ -614,14 +615,14 @@ export function ThemeForm({ profile, links = [], onUpdateSecondaryBg, currentThe
         {/* Background Tab */}
         <TabsContent value="background" className="space-y-6 sm:space-y-8 mt-6 sm:mt-8">
           {/* Background Colors */}
-          <Card>
+          {/* <Card>
             <CardHeader>
               <CardTitle className="text-base sm:text-lg">Background Color</CardTitle>
               <CardDescription className="text-sm">Select or customize your background color</CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-4"> */}
               {/* Preset Colors */}
-              <div>
+              {/* <div>
                 <Label className="text-sm font-medium mb-3 block">Quick Presets</Label>
                 <div className="grid grid-cols-6 sm:grid-cols-8 gap-2 sm:gap-3">
                   {backgroundColors.map((bgColor) => (
@@ -648,10 +649,51 @@ export function ThemeForm({ profile, links = [], onUpdateSecondaryBg, currentThe
                     </button>
                   ))}
                 </div>
-              </div>
-
+              </div> */}
+            <Card>
+  <CardHeader>
+    <CardTitle className="text-base sm:text-lg">Background Color</CardTitle>
+    <CardDescription className="text-sm">
+      Select or customize your background color
+    </CardDescription>
+  </CardHeader>
+  <CardContent>
+    <RadioGroup
+      value={themeSettings.backgroundColor}
+      onValueChange={updateBackgroundColor}
+      className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4"
+    >
+      {backgroundColors.map((bgColor) => (
+        <div key={bgColor.value}>
+          <RadioGroupItem
+            value={bgColor.value}
+            id={`color-${bgColor.value}`}
+            className="sr-only"
+          />
+          <Label
+            htmlFor={`color-${bgColor.value}`}
+            className={cn(
+              "flex flex-col rounded-xl border-2 hover:border-primary/50 transition-all duration-200 overflow-hidden cursor-pointer group touch-manipulation",
+              themeSettings.backgroundColor === bgColor.value &&
+                "border-primary ring-2 ring-primary/20"
+            )}
+          >
+            <div
+              className="h-16 sm:h-20 w-full group-hover:scale-105 transition-transform"
+              style={{ backgroundColor: bgColor.color }}
+              title={`${bgColor.name} (RGB: ${bgColor.rgb})`}
+            />
+            <div className="p-2 sm:p-3">
+              <span className="text-xs sm:text-sm font-medium">
+                {bgColor.name}
+              </span>
+            </div>
+          </Label>
+        </div>
+      ))}
+    </RadioGroup>
               {/* Custom RGB Color Picker */}
-              <div className="pt-4 border-t">
+              {/* <div className="pt-4 border-t">
                 <ColorPicker
                   label="Custom Background Color"
                   value={
@@ -664,7 +706,7 @@ export function ThemeForm({ profile, links = [], onUpdateSecondaryBg, currentThe
                     updateBackgroundColor(`custom-${color}`)
                   }}
                 />
-              </div>
+              </div> */}
             </CardContent>
           </Card>
 
@@ -947,7 +989,7 @@ export function ThemeForm({ profile, links = [], onUpdateSecondaryBg, currentThe
               )}
 
               {/* New Blur Glass Effect */}
-              <div className="flex items-center justify-between p-3 sm:p-4 border rounded-lg">
+              {/* <div className="flex items-center justify-between p-3 sm:p-4 border rounded-lg">
                 <div className="flex items-center gap-3">
                   <div className="p-2 rounded-lg bg-purple-500/10">
                     <Layers className="h-4 w-4 sm:h-5 sm:w-5 text-purple-500" />
@@ -965,10 +1007,10 @@ export function ThemeForm({ profile, links = [], onUpdateSecondaryBg, currentThe
                   onCheckedChange={toggleBlurGlass}
                   className="data-[state=checked]:bg-purple-500"
                 />
-              </div>
+              </div> */}
 
               {/* Blur Intensity Control */}
-              {themeSettings.effects.blurGlass && (
+              {/* {themeSettings.effects.blurGlass && (
                 <div className="space-y-3 sm:space-y-4 p-3 sm:p-4 border rounded-lg bg-muted/30">
                   <div>
                     <Label className="font-medium text-sm sm:text-base">Blur Intensity</Label>
@@ -985,7 +1027,7 @@ export function ThemeForm({ profile, links = [], onUpdateSecondaryBg, currentThe
                     className="w-full"
                   />
                 </div>
-              )}
+              )} */}
             </CardContent>
           </Card>
 

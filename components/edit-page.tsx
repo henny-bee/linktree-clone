@@ -172,6 +172,22 @@ export default function EditPage() {
     return () => window.removeEventListener("resize", handleResize)
   }, [])
 
+  const getColorStyle = (colorType: string): string => {
+  const colors: Record<string, string> = {
+    "bg-white": "#ffffff",
+    "bg-gray-50": "#e5e7eb",    // gray-200
+    "bg-slate-100": "#e5e7eb",  // slate-300
+    "bg-red-50": "#fecaca",     // red-300
+    "bg-orange-50": "#fdba74",  // orange-300
+    "bg-yellow-50": "#fde047",  // yellow-300
+    "bg-green-50": "#86efac",   // green-300
+    "bg-blue-50": "#93c5fd",    // blue-300
+    "bg-purple-50": "#c4b5fd",  // purple-300
+    "bg-pink-50": "#c4b5fd",
+  }
+  return colors[colorType] || ""
+}
+
   // Helper function to get gradient styles (for preview only)
   const getGradientStyle = (gradientType: string): string => {
     const gradients = {
@@ -181,8 +197,8 @@ export default function EditPage() {
       midnight: "linear-gradient(135deg, #2c3e50 0%, #3498db 100%)",
       aurora: "linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)",
       fire: "linear-gradient(135deg, #ff9a56 0%, #ff6b6b 100%)",
-      purple: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-      pink: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
+      purpledream: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+      pinkbliss: "linear-gradient(135deg, #f093fb 0%, #f5576c 100%)",
       neon: "linear-gradient(135deg, #00f5ff 0%, #ff00ff 50%, #ffff00 100%)",
       tropical: "linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #ffe66d 100%)",
       galaxy: "linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)",
@@ -208,7 +224,8 @@ export default function EditPage() {
       label: "Links",
       icon: LinkIcon,
       description: "Manage your social links",
-      badge: links.length > 0 ? `${links.length} links` : "Empty",
+      // badge: links.length > 0 ? `${links.length} links` : "Empty",
+      badge: null,
       color: "green",
     },
     {
@@ -216,7 +233,7 @@ export default function EditPage() {
       label: "Design",
       icon: Palette,
       description: "Colors, fonts & styling",
-      badge: themeSettings.colorTheme !== "default" ? "Customized" : "Default",
+      badge: null,
       color: "purple",
     },
   ]
@@ -835,7 +852,7 @@ export default function EditPage() {
                   </CardHeader>
                   <CardContent className="pt-0">
                     {/* Preview Container */}
-                    <div
+                    {/* <div
                       className={cn(
                         "preview-container rounded-xl overflow-hidden border-2 border-slate-200 dark:border-slate-700 transition-all duration-300",
                         previewDevice === "mobile" ? "max-w-sm mx-auto" : "w-full",
@@ -861,7 +878,39 @@ export default function EditPage() {
                         backgroundSize: themeSettings.backgroundImage ? "cover" : undefined,
                         backgroundPosition: themeSettings.backgroundImage ? "center" : undefined,
                         backgroundRepeat: themeSettings.backgroundImage ? "no-repeat" : undefined,
-                      }}
+                      }} */}
+                      <div
+  className={cn(
+    "preview-container rounded-xl overflow-hidden border-2 border-slate-200 dark:border-slate-700 transition-all duration-300",
+    previewDevice === "mobile" ? "max-w-sm mx-auto" : "w-full",
+    "min-h-[600px] relative",
+    themeSettings.pattern !== "none" && themeSettings.pattern,
+    themeSettings.effects.glassmorphism && "glassmorphism",
+    themeSettings.effects.blurGlass && "blur-glass",
+  )}
+  style={{
+    backgroundImage: (() => {
+      if (themeSettings.backgroundImage) {
+        return `url(${themeSettings.backgroundImage})`
+      } else if (themeSettings.backgroundGradient && themeSettings.backgroundGradient !== "none") {
+        return getGradientStyle(themeSettings.backgroundGradient)
+      }
+      return undefined
+    })(),
+    backgroundColor: (() => {
+  if (
+    (!themeSettings.backgroundGradient || themeSettings.backgroundGradient === "none") &&
+    !themeSettings.backgroundImage
+  ) {
+    return getColorStyle(themeSettings.backgroundColor || "")
+  }
+  return undefined
+})(), 
+    backgroundSize: themeSettings.backgroundImage ? "cover" : undefined,
+    backgroundPosition: themeSettings.backgroundImage ? "center" : undefined,
+    backgroundRepeat: themeSettings.backgroundImage ? "no-repeat" : undefined,
+  }}
+
                     >
                       {/* Pattern overlay for custom backgrounds */}
                       {themeSettings.backgroundImage && themeSettings.pattern !== "none" && (
